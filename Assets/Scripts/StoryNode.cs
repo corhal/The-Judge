@@ -1,18 +1,20 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class StoryNode : MonoBehaviour {
 
 	public string[] Dialogues;
+	public Image[] Images;
 
-	public Orientation[] DialogueOrientations;
+	public Speaker[] DialogueSpeakers;
 
 	public string[] LinkTexts;
 
 	public StoryNode[] NodeLinks;
 }
 
-public enum Orientation {
+public enum Speaker {
 	Left,
 	Right
 }

@@ -23,8 +23,15 @@ public class NodeDisplayer : MonoBehaviour {
 
 	int currentDialogue;
 
-	void Awake() {
+	/*void Awake() {
 		DisplayNode (StartingNode);	
+	}*/
+
+	public void SetStartingNode(StoryNode startingNode) {
+		if (StartingNode == null) {
+			StartingNode = startingNode;
+			DisplayNode (StartingNode);
+		}
 	}
 
 	public void DisplayNode(StoryNode node) {
@@ -83,15 +90,23 @@ public class NodeDisplayer : MonoBehaviour {
 		});
 	}
 
+	public Image DialogueImage;
+
 	void DisplayDialogue(int index) {
 		GameObject newDialogue = Instantiate (DialoguePrefab, DialogueParent.transform) as GameObject;
 		Dialogues [index] = newDialogue;
 		newDialogue.GetComponentInChildren<Text> ().text = currentNode.Dialogues [index];
-		if (currentNode.DialogueOrientations[index] == Orientation.Left) {
+		Image dialogueImage = newDialogue.GetComponentInChildren<Image> ();
+		if (dialogueImage.gameObject.GetComponent<HorizontalLayoutGroup>() != null) { // :(
+			dialogueImage = dialogueImage.GetComponentInChildren<Image> ();
+		}
+		DialogueImage = dialogueImage;
+		if (currentNode.DialogueSpeakers[index] == Speaker.Left) {
 			newDialogue.GetComponent<VerticalLayoutGroup> ().padding.right = 30;
 		}
-		if (currentNode.DialogueOrientations[index] == Orientation.Right) {
+		if (currentNode.DialogueSpeakers[index] == Speaker.Right) {
 			newDialogue.GetComponent<VerticalLayoutGroup> ().padding.left = 30;
+			dialogueImage.transform.SetAsLastSibling ();
 		}
 		if (Dialogues.Length + 1 > currentDialogue) {
 			currentDialogue++;
