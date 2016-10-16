@@ -4,10 +4,9 @@ using System.Collections;
 
 public class StoryNode : MonoBehaviour {
 
-	public string[] Dialogues;
-	public Image[] Images;
+	public string Dialogue;
 
-	public Speaker[] DialogueSpeakers;
+	public Speaker DialogueSpeaker;
 
 	public string[] LinkTexts;
 
@@ -15,6 +14,7 @@ public class StoryNode : MonoBehaviour {
 }
 
 public enum Speaker {
-	Left,
-	Right
+	Plaintiff,
+    Witness,
+	Defendant
 }

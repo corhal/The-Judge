@@ -5,6 +5,10 @@ using System.Collections.Generic;
 
 public class NodeDisplayer : MonoBehaviour {
 
+	public ScrollRect scrollRect;
+
+	public int DialoguePadding;
+
 	public StoryNode StartingNode;
 	StoryNode currentNode;
 
@@ -16,7 +20,7 @@ public class NodeDisplayer : MonoBehaviour {
 	public GameObject StoryLinkPrefab;
 	public GameObject DialoguePrefab;
 
-	public GameObject[] Dialogues;
+	public List<GameObject> Dialogues;
 
 	public Button[] NodeLinks;
 	public Text[] LinkTexts;
@@ -26,6 +30,10 @@ public class NodeDisplayer : MonoBehaviour {
 	/*void Awake() {
 		DisplayNode (StartingNode);	
 	}*/
+
+	void Start() {
+		Dialogues = new List<GameObject>();
+	}
 
 	public void SetStartingNode(StoryNode startingNode) {
 		if (StartingNode == null) {
@@ -42,24 +50,13 @@ public class NodeDisplayer : MonoBehaviour {
 			Destroy(NodeLinks[i].gameObject);
 		}
 
-		for (int i = 0; i < Dialogues.Length; i++) {
-			if (Dialogues[i] != null) {
-				Destroy (Dialogues [i]);
-			}
-		}
-
-		Dialogues = new GameObject[node.Dialogues.Length];
 		NodeLinks = new Button[node.NodeLinks.Length];
 		LinkTexts = new Text[node.NodeLinks.Length];
-		currentDialogue = 0;
 
-		DisplayDialogue(currentDialogue);
+		DisplayDialogue();
 	}
 
 	void DisplayStoryLinks() {
-		if (nextButtonObject != null) {
-			Destroy (nextButtonObject);
-		}
 		for (int i = 0; i < NodeLinks.Length; i++) {
 			GameObject newStoryLink = Instantiate (StoryLinkPrefab, LinkParent.transform) as GameObject;
 
@@ -68,61 +65,50 @@ public class NodeDisplayer : MonoBehaviour {
 			LinkTexts [i].text = currentNode.LinkTexts [i];
 			NodeLinks [i].onClick.RemoveAllListeners ();
 			StoryNode displayNode = currentNode.NodeLinks [i];
+
 			NodeLinks [i].onClick.AddListener (delegate {				
 				DisplayNode(displayNode);
 			});
 		}
 	}
 
-	void DisplayNextButton() {
-		if (nextButtonObject != null) {
-			Destroy (nextButtonObject);
-		}
-		GameObject newStoryLink = Instantiate (StoryLinkPrefab, LinkParent.transform) as GameObject;
-		nextButtonObject = newStoryLink;
-		Button nextButton = newStoryLink.GetComponent<Button> ();
-		Text nextText = newStoryLink.GetComponentInChildren<Text> ();
-		nextText.text = "Дальше";
-		nextButton.onClick.RemoveAllListeners ();
-
-		nextButton.onClick.AddListener (delegate {				
-			DisplayDialogue(currentDialogue);
-		});
-	}
-
-	public Image DialogueImage;
-
-	void DisplayDialogue(int index) {
+	void DisplayDialogue() {
 		GameObject newDialogue = Instantiate (DialoguePrefab, DialogueParent.transform) as GameObject;
-		Dialogues [index] = newDialogue;
-		newDialogue.GetComponentInChildren<Text> ().text = currentNode.Dialogues [index];
-		Image dialogueImage = newDialogue.GetComponentInChildren<Image> ();
-		if (dialogueImage.gameObject.GetComponent<HorizontalLayoutGroup>() != null) { // :(
-			dialogueImage = dialogueImage.GetComponentInChildren<Image> ();
-		}
-		DialogueImage = dialogueImage;
-		if (currentNode.DialogueSpeakers[index] == Speaker.Left) {
-			newDialogue.GetComponent<VerticalLayoutGroup> ().padding.right = 30;
-		}
-		if (currentNode.DialogueSpeakers[index] == Speaker.Right) {
-			newDialogue.GetComponent<VerticalLayoutGroup> ().padding.left = 30;
-			dialogueImage.transform.SetAsLastSibling ();
-		}
-		if (Dialogues.Length + 1 > currentDialogue) {
+		Dialogues.Add (newDialogue);
+		//Dialogues [index] = newDialogue;
+		newDialogue.GetComponentInChildren<Text> ().text = currentNode.Dialogue;
+
+		SetSpeaker (newDialogue, currentNode.DialogueSpeaker);
+
+		if (Dialogues.Count + 1 > currentDialogue) {
 			currentDialogue++;
 		}
 
-		Debug.Log (currentDialogue + " " + (Dialogues.Length - 1));
+		Debug.Log (currentDialogue + " " + (Dialogues.Count - 1));
 
-		if (currentDialogue < Dialogues.Length) {
-			DisplayNextButton ();
-		} else {
-			DisplayStoryLinks ();
-		}
+		DisplayStoryLinks ();
+
+		scrollRect.verticalNormalizedPosition = 0;
 	}
 
 	void ClickButton(StoryNode node) {
 		Debug.Log (node);
 		//DisplayNode(node);
+	}
+
+	void SetSpeaker(GameObject dialogue, Speaker speaker) {
+		if (speaker == Speaker.Plaintiff) {
+			dialogue.GetComponent<VerticalLayoutGroup> ().padding.right = DialoguePadding;
+			dialogue.GetComponentInChildren<Image> ().color = Color.red;
+		}
+		if (speaker == Speaker.Witness) {
+			dialogue.GetComponent<VerticalLayoutGroup> ().padding.right = DialoguePadding / 2;
+			dialogue.GetComponent<VerticalLayoutGroup> ().padding.left = DialoguePadding / 2;
+			dialogue.GetComponentInChildren<Image> ().color = Color.green;
+		}
+		if (speaker == Speaker.Defendant) {
+			dialogue.GetComponent<VerticalLayoutGroup> ().padding.left = DialoguePadding;
+			dialogue.GetComponentInChildren<Image> ().color = Color.blue;
+		}
 	}
 }
