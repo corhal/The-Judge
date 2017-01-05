@@ -1,0 +1,112 @@
+Index,Dialogue,Speaker,LinkTexts,NodeLinksIndexes
+1,Hi there! I am Kyle and I'm gonna be the person to defend that nice woman in the next case.,Plaintiff,Okay,2
+2,"She's really brave, you know? Yeah... Anyway. How about we grab a drink after the hearing? You seem to be a good guy, unlike our old judge.",Plaintiff,"Sure!;Sorry, I prefer to keep job and life separated.",3;8
+3,Great! There is one more thing I'd like to discuss with you now...,Plaintiff,Go on,4
+4,There is an evidence the plaintiff somehow managed to push through. It's a personal file of our Defendant.,Plaintiff,And?,5
+5,"Look, it has nothing to do with the case. So if you could, you know... Pass on it, it would be really great. I'll spread the word about a new Judge... And my word is worth a lot.",Plaintiff,I'll see into that.;You come dangerously close to trying manipulating justice. See you at the hearing.,6;7
+6,Nice! See you later.,Plaintiff,See you.,9
+7,"Oh well, haha. You got it all wrong, I was just... asking for a little understanding. See you later, mister Justice.",Plaintiff,Just go.,9
+8,"Oh well, haha. I totally understand that. That's... really professional. Yeah, see you later, I guess.",Plaintiff,See you.,9
+9,"Your Honor. I see you've met Kyle... A nice young man, isn't he.",Defendant,He seems like a great guy.;He seemed a bit sleezy to me.,10;11
+10,"He really is. Anyway, my name is Donald Stolz. See you at the hearing. I'm sure it will be just and unbiased.",Defendant,It sure will.,19
+11,"Oh... really? Well, wait until you know him closer. Anyway... My name's Donald Stolz, I am the Company's chief attorney.",Defendant,"Nice to meet you, Donald.;I thought a man like mr. Please would prefer a personal lawyer.",12;13
+12,"We are all hoping for a just and unbiased hearing, your Honor. Well, maybe except for Kyle.",Defendant,"See you at the hearing, mr. Stolz.",19
+13,"A personal lawyer for a personal case, huh? You see, for David the border between his person and his company is very thin.",Defendant,Is it a good thing?,14
+14,"Well, it is definitely good for the Company. And what's good for the Company is usually good for us, its empoyees. Anyway, there is one more fact I wanted to disclose to you.",Defendant,Go on.,15
+15,"Will Dawson, the witness, works at our company. That you will be told about. What you won't be told about, though, is that he is dating the Plaintiff. Our policies prohibit that, so they won't confess to it... But we still know.",Defendant,"How, I wonder?",16
+16,"We just do. When mrs. Parker decided to sue, we made a series of checks. Not the checks you could use as court evidence, alas... But still. They are dating, so if you will ask him anything about harrassment, he will be incredibly biased.",Defendant,Thank you for the advice.;What to ask or not to ask is for me to decide.,17;18
+17,You are welcome. See you at the hearing.,Defendant,See you.,19
+18,Sure. Just thought you'd want to be informed. See you at the hearing.,Defendant,See you.,19
+19,"Your honor, let us hear a classical story from Medieval times. A female employee can’t get a promotion on her job due to sexual harassment. She has been working in David Jr Please’s company for 7 years already and nothing she included in her work but hard labor and loyalty to the company. But if usually these efforts are paid off by carrier growth and salary raises my client has only seen her male colleagues successes for less things done. We are hear to witness a triumph of justice when modern employers will finally respect women rights and respect their right for carrier equal to everyone else.",Plaintiff,...,20
+20,"Your honor, let us also hear a story of one entrepreneur who has overcome so many things to get to the top of the business world. And now what happens? An assistant in sales who isn’t capable to get a promotion in 7 years goes to Law to get a raise thanks only to public attention. My client is a self-made person who respects human rights and invests millions to help people around the world including protection of those offended. He also has principles and this is business world where you can bring profit or not and thus get a promotion or not. Our plaintiff has shown herself as a person capable to do some paper work but not to do sales yet. When she is ready there is no doubt she can get what she wants especially in David’s Company.",Defendant,...,21
+21,"Your Honor, let us begin with a highlight of what Jane Parker has done for the Company during  the last 7 years. Every single morning she is the first person to come to the office and start with  enormous amounts of e-mails and letters. Then she comes to morning meetings with sales managers to  write down all tasks to be done. The whole day is a routine which she is managing and goes home quite  late in the evening when everybody is already home.",Plaintiff,...,22
+22,Objection. This statement doesn’t prove anything,Defendant,Objection accepted.;Objection declined.,23;24
+23,Fine.,Plaintiff,...,28
+24,"It proves nothing but solid discipline which is the most important quality in assistant’s job. Your  Honor, we would like to attach an evidence to the case. It is Jane’s personal file which will bring to light  several years of perfect performance.",Plaintiff,...,25
+25,Which still doesn’t prove any successes on the job.,Defendant,Accept evidence;Decline evidence,26;27
+26,Not that it will help the plaintiff's side.,Defendant,...,28
+27,"That's just unfair, how can you affirm that without seeing the file?",Plaintiff,...,28
+28,We are also eager to prove Jane’s outstanding job performance in the following way. Once you  get an option to get promoted according to the Company rules you fill the promotion form which is  revised by direct management and HR. We also would love to include this document to the Protocol as it  will show that Jane’s work done has always been worth going to a higher level.,Plaintiff,Accept evidence;Decline evidence,29;30
+29,"Thank you, your Honor.",Plaintiff,...,31
+30,Not like we were going to object that...,Defendant,...,31
+31,Let us also not forget that this case is not only about not getting a promotion but the reasons of  such case. Gender prejudices and CEO’s unwilling to get a female employee get a promotion – this is the  core issue. David Jr Please has shown numerous times his sympathy to our young and beautiful Jane  who is working in his very company where he feels like a world master and every soul belongs to him.,Plaintiff,...,32
+32,Objection. Don’t picture a monster out of my client.,Defendant,Accept objection;Decline objection,33;34
+33,Just you wait until he shows his horns.,Plaintiff,To order!,35
+34,Why don't we call a priest then? At least draw a pentagram around defending side?,Defendant,To order!,35
+35,At any means possible the Defendant has been taking his chance to express personal sympathy  to Jane which can easily be proved by this video tape. It shows David’s super-informal behavior with  Jane at a corporate party.,Plaintiff,Accept evidence;Decline evidence,36;37
+36,"Yeah... You're heading for a disappointment. By the way, care to tell who shot the video? I have an idea for our next case.",Defendant,...,38
+37,"Well, that's just not fair.",Plaintiff,...,38
+38,"Well, it looks like the Plaintiff’s side is trying to prove that Jane is a great employee or even a  superstar of her job. And she really works hard and comes first to the office and comes back home at  night as the Plaintiff has told the Court. Well, let’s say that we agree. With some of these facts. Jane is  really an office-living person, but why? Isn’t it always about how you organize your labor hours and how  effective do you spend it? It surely is.",Defendant,...,39
+39,This is why we would like to add to the Protocol Jane’s daily time spend graphic which will allow us to  know Jane’s workflow much better and might show us the reasons for so much time spent on her  workplace.,Defendant,...,40
+40,"Objection. Extra hours of work are a proven fact, is there any need in proving anything else?",Plaintiff,Accept objection (decline evidence);Decline objection (accept evidence),41;42
+41,"Oh, really? I think the plaintiff is too used to how it's done in court. Sure, if we protract the case long enough, we get paid a ton of money, BUT IT'S NOT THE CASE IN THE REAL WORLD!",Defendant,...,43
+42,"Thank you, your Honor.",Defendant,...,43
+43,Another fact that proves inability to get a promotion is the vacation schedule. Seems like the  Plaintiff has been taking short vacations just before every important deal of the Company when the  whole staff is overloaded with work.,Defendant,...,44
+44,"Objection. Vacations are a personal matter, not business related ones.",Plaintiff,Accept objection;Decline objection,45;46
+45,Aren't we here because your client wants to make a business deal personal?,Defendant,...,49
+46,It still proves that Jane is not a participant in those processes which bring money to the  company. We would like to attach the vacation list to the Protocol.,Defendant,Accept evidence;Decline evidence,47;48
+47,I'm sure she has a good explanation though.,Plaintiff,...,49
+48,Really?,Defendant,...,49
+49,Regarding sexual harassment. It’s nonsense. David Jr Please is well known business men  famous for his morale standards and respect of human rights. David has invested $600k just this year to  the fund of Gender Equality Protection. This person is really dedicated to what is called human rights.  This checks are the things we would ask to include to the Protocol.,Defendant,...,50
+50,Objection. Checks and investments do not prove that David doesn’t violate human rights.,Plaintiff,Accept objection (decline evidence);Decline objection (accept evidence),51;52
+51,"Well, why would he invest money, then?",Defendant,...,55
+52,"Ok, then we would like to include photos and videos of David helping orphan children by  paying for their education and giving them a better life. We are sure this person can’t be violating  anyone’s rights but would only help those in need.",Defendant,Accept evidence;Decline evidence,53;54
+53,"Now you're just laughing at me, aren't you?",Plaintiff,...,55
+54,"Well, can't blame me for trying.",Defendant,...,55
+55,There is one more thing from our side. It’s a job offer to Jane from another Company. Of course  Jane has been looking for new opportunities on the market and has completed several interviews. As  Jane is a high-class specialist this efforts surely resulted in an offer which we are willing to attach to the  Case and the Protocol.,Plaintiff,Accept evidence;Decline evidence,56;57
+56,And shows no loyalty to the current employer.,Defendant,...,58
+57,Come on.,Plaintiff,...,58
+58,"The last thing we will point at is a joint complaint by other personnel of the company against  Jane. Perhaps, Jane has earned some kind of reputation by dressing provocative dresses to the office  and trying to prove her woman rights with this kind of demonstration",Defendant,...,59
+59,Objection! How can dressing style be connected to the case?,Plaintiff,Accept objection (decline evidence);Decline objection (accept evidence),60;61
+60,"Thank you, your Honor!",Plaintiff,...,62
+61,In the way that you can’t be serious saying that men are looking at you when you are dressed so that other employees have to write a compliant.,Defendant,...,62
+62,"I am Caleb Johnson, Jane's colleague.",Witness,...,63
+63,"First of all, Caleb, how are you doing in the company? What’s  your job there?",Plaintiff,...,64
+64,Sales department head. I’m responsible for all deals and  negotiations. Making money.,Witness,...,65
+65,"So, you are top level manager, correct?",Plaintiff,...,66
+66,I guess so.,Witness,...,67
+67,And how long have you been working in the company?,Plaintiff,...,68
+68,7 years already.,Witness,...,69
+69,"Great carreer! And started at the same time as Jane's, too. My congratulations! Well, could you share any  thoughts on why did you achieve these results? What’s your  secret?",Plaintiff,...,70
+70,I’ve got no secrets. I have been working really hard and  closed really many deals. I would say I have doubled the  business.,Witness,...,71
+71,"So, you are a straight white male who has achieved success on his job?",Plaintiff,...,72
+72,Objection! That is an atrocious way to skew the opinion.,Defendant,Accept objection;Decline objection,73;74
+73,"Problems like racism and sexism don't go away if you pretend they don't exist, you know.",Plaintiff,...,85
+74,"Well, yes...",Witness,...,75
+75,"Are your colleagues, I mean, those on the top level are as well male and straight and fit all these kind  of characteristics?",Plaintiff,...,76
+76,"Objection. That is incredibly racist and sexist, you know?",Defendant,Accept objection;Decline objection,77;78
+77,You can't be racist to a white person! Nor can you be sexist towards a straight male.,Plaintiff,...,83
+78,Not all of them.,Witness,...,79
+79,But the majority?..,Plaintiff,...,80
+80,"Yes, the majority fits your description well.",Witness,...,81
+81,"Consequently, can you than say that people who fit the characteristics of male gender and other, so to say, characteristics get better opportunities for carrier growth and have got promoted to the top?",Plaintiff,...,82
+82,"Yes, looks like so.",Witness,...,87
+83,"Consequently, can you than say that people who fit the characteristics of male gender and other, so  to say, characteristics get better opportunities for carrier growth and have got promoted to the top?",Plaintiff,...,84
+84,"It looks like so, but I wouldn’t say that’s the reason.",Witness,...,87
+85,"Consequently, can you than say that people who fit the characteristics of male gender and other, so  to say, characteristics get better opportunities for carrier growth and have got promoted to the top?",Plaintiff,...,86
+86,"Nope. If you are good, you are on the top.",Witness,...,87
+87,"You are saying that hard work has become the core condition for you to get all the promotions, is  that so?",Defendant,...,88
+88,"Yes, it is.",Witness,...,89
+89,Do you believe that hard work will lead any employee to success?,Defendant,...,90
+90,Objection. That's a leading question!,Plaintiff,Accept objection;Decline objection,91;92
+91,"No, no. The question BEFORE that was leading, I'll give you that. You had to object THEN!",Defendant,...,105
+92,"No, I don't think so.",Witness,...,93
+93,"Oh! Hm... So, what are the other factors?",Defendant,...,94
+94,Sales talent for example. Hard work is not enough.,Witness,...,95
+95,"Ok, let me phrase it in other words: the results of your work have led you to your current position,  correct?",Defendant,...,96
+96,Yes.,Witness,...,97
+97,And do you believe that any member of your company that shows excellent results and brings money  to the business will be promoted?,Defendant,...,98
+98,"In theory, yes.",Witness,...,99
+99,And in practice?,Defendant,...,100
+100,In practice we face corporate reality when we have bosses and you can’t get a promotion because this place is already taken.,Witness,...,101
+101,And what is the case when you are a great performer but you can’t get a promotion?,Defendant,...,102
+102,Objection. This talk is leading us nowhere.,Plaintiff,Accept objection;Decline objection,103;104
+103,"What, are you too used to action movies?",Defendant,...,107
+104,That person would be getting bonuses and salary raises with no doubt.,Witness,...,109
+105,"Ok, finally, can we conclude that in the Company your work and your works positive results will bring  positive consequences in at least bonuses and salary raises and possibly career growth?",Defendant,...,106
+106,Not really. It may be so but only if the person possesses the required skills  and expertise.,Witness,...,111
+107,"Ok, finally, can we conclude that in the Company your work and your works positive results will bring  positive consequences in at least bonuses and salary raises and possibly career growth?",Defendant,...,108
+108,"Sometimes, yes, it depends on many various factors really.",Witness,...,111
+109,"Ok, finally, can we conclude that in the Company your work and your works positive results will bring  positive consequences in at least bonuses and salary raises and possibly career growth?",Defendant,...,110
+110,"Yes, your efforts will be paid off.",Witness,...,111
+111,На этом демо пока заканчивается.,Witness,Посмотреть заново,1

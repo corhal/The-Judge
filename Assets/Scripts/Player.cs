@@ -5,7 +5,11 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
 	public static Player instance;
-	GameObject caseFile;
+	GameObject caseFileObject;
+	public CaseFile caseFile;
+
+	public bool hasAchievedDefendantGoal;
+	public bool hasAchievedPlaintiffGoal;
 
 	void Awake() {
 		//Check if instance already exists
@@ -27,6 +31,7 @@ public class Player : MonoBehaviour {
 
 	void SceneManager_sceneLoaded (Scene arg0, LoadSceneMode arg1) {
 		if (arg0.buildIndex == 1) {
+			caseFile = GetComponentInChildren<CaseFile> ();
 			StoryNode[] storyNodes = GetComponentsInChildren<StoryNode> ();
 			NodeDisplayer displayer = GameObject.FindObjectOfType<NodeDisplayer> ();
 			displayer.SetStartingNode (storyNodes[0]);
@@ -36,10 +41,10 @@ public class Player : MonoBehaviour {
 	public void TakeCase(GameObject newCase) {
 		Debug.Log ("Taking case");
 		if (caseFile != null) {
-			Destroy (caseFile);
+			Destroy (caseFileObject);
 		}
-		caseFile = Instantiate (newCase);
-		caseFile.transform.SetParent (transform);
+		caseFileObject = Instantiate (newCase);
+		caseFileObject.transform.SetParent (transform);
 
 		SceneManager.LoadScene (1);
 	}

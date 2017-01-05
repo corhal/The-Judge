@@ -46,6 +46,13 @@ public class NodeDisplayer : MonoBehaviour {
 
 		currentNode = node;
 
+		/*if (currentNode == Player.instance.caseFile.DefendantGoal) {
+			Player.instance.hasAchievedDefendantGoal = true;
+		}
+		if (currentNode == Player.instance.caseFile.PlaintiffGoal) {
+			Player.instance.hasAchievedPlaintiffGoal = true;
+		}*/
+
 		for (int i = 0; i < NodeLinks.Length; i++) {
 			Destroy(NodeLinks[i].gameObject);
 		}
@@ -88,7 +95,16 @@ public class NodeDisplayer : MonoBehaviour {
 
 		DisplayStoryLinks ();
 
-		scrollRect.verticalNormalizedPosition = 0;
+		Canvas.ForceUpdateCanvases();
+		//ScrollBottom ();
+		scrollRect.verticalNormalizedPosition = -0.0f;
+		Canvas.ForceUpdateCanvases();
+		//Debug.Log(scrollRect.verticalNormalizedPosition);
+	}
+
+	IEnumerator ScrollBottom() {		
+		yield return new WaitForSeconds(0.5f);
+		scrollRect.verticalNormalizedPosition = -0.1f;
 	}
 
 	void ClickButton(StoryNode node) {
@@ -104,11 +120,15 @@ public class NodeDisplayer : MonoBehaviour {
 		if (speaker == Speaker.Witness) {
 			dialogue.GetComponent<VerticalLayoutGroup> ().padding.right = DialoguePadding / 2;
 			dialogue.GetComponent<VerticalLayoutGroup> ().padding.left = DialoguePadding / 2;
-			dialogue.GetComponentInChildren<Image> ().color = Color.green;
+			dialogue.GetComponentInChildren<Image> ().color = Utility.hexToColor ("006600");
 		}
 		if (speaker == Speaker.Defendant) {
 			dialogue.GetComponent<VerticalLayoutGroup> ().padding.left = DialoguePadding;
 			dialogue.GetComponentInChildren<Image> ().color = Color.blue;
 		}
+	}
+
+	public void Quit() {
+		Application.Quit ();
 	}
 }
