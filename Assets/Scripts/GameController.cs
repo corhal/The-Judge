@@ -9,9 +9,14 @@ public class GameController : MonoBehaviour {
 	public void UnpackCase (CaseFile caseFile) {
 		TextAsset caseTable = caseFile.CaseTable;
 		List<GameObject> storyNodeObjects = LoadCase (caseTable);
+		int maxIndex = 0;
 		foreach (var storyNodeObject in storyNodeObjects) {
 			storyNodeObject.transform.SetParent (caseFile.gameObject.transform);
 			storyNodeObject.transform.SetSiblingIndex (storyNodeObject.GetComponent<StoryNode> ().Index);
+			if (storyNodeObject.GetComponent<StoryNode> ().Index > maxIndex) {
+				maxIndex = storyNodeObject.GetComponent<StoryNode> ().Index;
+				caseFile.LastNode = storyNodeObject.GetComponent<StoryNode> ();
+			}
 		}
 		Player.instance.TakeCase (caseFile.gameObject);
 	}

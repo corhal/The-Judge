@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 public class NodeDisplayer : MonoBehaviour {
 
+	public GameObject WitnessObject;
+
 	public ScrollRect scrollRect;
 
 	public int DialoguePadding;
@@ -27,31 +29,19 @@ public class NodeDisplayer : MonoBehaviour {
 
 	int currentDialogue;
 
-	/*void Awake() {
-		DisplayNode (StartingNode);	
-	}*/
-
-	void Start() {
+	void Awake () {
 		Dialogues = new List<GameObject>();
 	}
 
-	public void SetStartingNode(StoryNode startingNode) {
+	public void SetStartingNode (StoryNode startingNode) {
 		if (StartingNode == null) {
 			StartingNode = startingNode;
 			DisplayNode (StartingNode);
 		}
 	}
 
-	public void DisplayNode(StoryNode node) {
-
+	public void DisplayNode (StoryNode node) {
 		currentNode = node;
-
-		/*if (currentNode == Player.instance.caseFile.DefendantGoal) {
-			Player.instance.hasAchievedDefendantGoal = true;
-		}
-		if (currentNode == Player.instance.caseFile.PlaintiffGoal) {
-			Player.instance.hasAchievedPlaintiffGoal = true;
-		}*/
 
 		for (int i = 0; i < NodeLinks.Length; i++) {
 			Destroy(NodeLinks[i].gameObject);
@@ -60,10 +50,10 @@ public class NodeDisplayer : MonoBehaviour {
 		NodeLinks = new Button[node.NodeLinks.Length];
 		LinkTexts = new Text[node.NodeLinks.Length];
 
-		DisplayDialogue();
+		DisplayDialogue ();
 	}
 
-	void DisplayStoryLinks() {
+	void DisplayStoryLinks () {
 		for (int i = 0; i < NodeLinks.Length; i++) {
 			GameObject newStoryLink = Instantiate (StoryLinkPrefab, LinkParent.transform) as GameObject;
 
@@ -73,13 +63,23 @@ public class NodeDisplayer : MonoBehaviour {
 			NodeLinks [i].onClick.RemoveAllListeners ();
 			StoryNode displayNode = currentNode.NodeLinks [i];
 
-			NodeLinks [i].onClick.AddListener (delegate {				
-				DisplayNode(displayNode);
-			});
+			if (currentNode == Player.instance.CurrentCase.LastNode) {
+				NodeLinks [i].onClick.AddListener (delegate {				
+					Player.instance.GoToOffice();
+				});
+			} else {
+				NodeLinks [i].onClick.AddListener (delegate {				
+					DisplayNode(displayNode);
+				});
+			}
 		}
 	}
 
-	void DisplayDialogue() {
+	void DisplayDialogue () {
+		if (Dialogues.Count > 0) {
+			Color currentColor = Dialogues [Dialogues.Count - 1].GetComponentInChildren<Image> ().color;
+			Dialogues [Dialogues.Count - 1].GetComponentInChildren<Image> ().color = new Color (currentColor.r, currentColor.g, currentColor.b, 0.5f);
+		}	
 		GameObject newDialogue = Instantiate (DialoguePrefab, DialogueParent.transform) as GameObject;
 		Dialogues.Add (newDialogue);
 		//Dialogues [index] = newDialogue;
@@ -96,23 +96,22 @@ public class NodeDisplayer : MonoBehaviour {
 		DisplayStoryLinks ();
 
 		Canvas.ForceUpdateCanvases();
-		//ScrollBottom ();
 		scrollRect.verticalNormalizedPosition = -0.0f;
 		Canvas.ForceUpdateCanvases();
-		//Debug.Log(scrollRect.verticalNormalizedPosition);
 	}
 
-	IEnumerator ScrollBottom() {		
+	IEnumerator ScrollBottom () {		
 		yield return new WaitForSeconds(0.5f);
 		scrollRect.verticalNormalizedPosition = -0.1f;
 	}
 
-	void ClickButton(StoryNode node) {
+	void ClickButton (StoryNode node) {
 		Debug.Log (node);
 		//DisplayNode(node);
 	}
 
-	void SetSpeaker(GameObject dialogue, Speaker speaker) {
+	void SetSpeaker (GameObject dialogue, Speaker speaker) {
+		WitnessObject.SetActive (false);
 		if (speaker == Speaker.Plaintiff) {
 			dialogue.GetComponent<VerticalLayoutGroup> ().padding.right = DialoguePadding;
 			dialogue.GetComponentInChildren<Image> ().color = Color.red;
@@ -121,6 +120,7 @@ public class NodeDisplayer : MonoBehaviour {
 			dialogue.GetComponent<VerticalLayoutGroup> ().padding.right = DialoguePadding / 2;
 			dialogue.GetComponent<VerticalLayoutGroup> ().padding.left = DialoguePadding / 2;
 			dialogue.GetComponentInChildren<Image> ().color = Utility.hexToColor ("006600");
+			WitnessObject.SetActive (true);
 		}
 		if (speaker == Speaker.Defendant) {
 			dialogue.GetComponent<VerticalLayoutGroup> ().padding.left = DialoguePadding;
@@ -128,7 +128,7 @@ public class NodeDisplayer : MonoBehaviour {
 		}
 	}
 
-	public void Quit() {
+	public void Quit () {
 		Application.Quit ();
 	}
 }

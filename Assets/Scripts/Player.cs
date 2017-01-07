@@ -6,7 +6,7 @@ public class Player : MonoBehaviour {
 
 	public static Player instance;
 	GameObject caseFileObject;
-	public CaseFile caseFile;
+	public CaseFile CurrentCase;
 
 	public bool hasAchievedDefendantGoal;
 	public bool hasAchievedPlaintiffGoal;
@@ -31,21 +31,25 @@ public class Player : MonoBehaviour {
 
 	void SceneManager_sceneLoaded (Scene arg0, LoadSceneMode arg1) {
 		if (arg0.buildIndex == 1) {
-			caseFile = GetComponentInChildren<CaseFile> ();
+			CurrentCase = GetComponentInChildren<CaseFile> ();
 			StoryNode[] storyNodes = GetComponentsInChildren<StoryNode> ();
 			NodeDisplayer displayer = GameObject.FindObjectOfType<NodeDisplayer> ();
 			displayer.SetStartingNode (storyNodes[0]);
 		}
 	}
 
-	public void TakeCase(GameObject newCase) {
+	public void TakeCase (GameObject newCase) {
 		Debug.Log ("Taking case");
-		if (caseFile != null) {
+		if (CurrentCase != null) {
 			Destroy (caseFileObject);
 		}
 		caseFileObject = Instantiate (newCase);
 		caseFileObject.transform.SetParent (transform);
 
 		SceneManager.LoadScene (1);
+	}
+
+	public void GoToOffice () {
+		SceneManager.LoadScene (0);
 	}
 }

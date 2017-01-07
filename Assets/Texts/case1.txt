@@ -109,4 +109,4 @@ Index,Dialogue,Speaker,LinkTexts,NodeLinksIndexes
 108,"Sometimes, yes, it depends on many various factors really.",Witness,...,111
 109,"Ok, finally, can we conclude that in the Company your work and your works positive results will bring  positive consequences in at least bonuses and salary raises and possibly career growth?",Defendant,...,110
 110,"Yes, your efforts will be paid off.",Witness,...,111
-111,На этом демо пока заканчивается.,Witness,Посмотреть заново,1
+111,На этом демо пока заканчивается.,Witness,В меню,1
