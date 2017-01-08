@@ -37,12 +37,28 @@ public class GameController : MonoBehaviour {
 
 			newStoryNode.LinkTexts = strings [3, i].Split (';');
 
-			string[] nodeLinksStrings = strings [4, i].Split (';');
+			int number;
+			bool result = System.Int32.TryParse(strings [4, i], out number);
+			if (result) {
+				newStoryNode.Points = number;       
+			} else {
+				newStoryNode.Points = 0;
+			}
+
+			string[] nodeLinksStrings = strings [5, i].Split (';');
 			newStoryNode.NodeLinksIndexes = new int[nodeLinksStrings.Length];
 			for (int j = 0; j < newStoryNode.NodeLinksIndexes.Length; j++) {
 				newStoryNode.NodeLinksIndexes [j] = System.Int32.Parse (nodeLinksStrings [j]);
 			}
 			storyNodesByIndexes.Add (newStoryNode.Index, newStoryNode); // ...готовься...
+
+			if (strings [6, i] != "") {
+				string[] paramsStrings = strings [6, i].Split (';');
+				newStoryNode.AdditionalParams = new Params[paramsStrings.Length];
+				for (int j = 0; j < paramsStrings.Length; j++) {
+					newStoryNode.AdditionalParams [j] = (Params)System.Enum.Parse (typeof(Params), paramsStrings [j]); // unsafe
+				}
+			}		
 
 			storyNodeObjects.Add (newStoryNodeObject);
 		}

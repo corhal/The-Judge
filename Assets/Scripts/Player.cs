@@ -52,4 +52,8 @@ public class Player : MonoBehaviour {
 	public void GoToOffice () {
 		SceneManager.LoadScene (0);
 	}
+
+	void OnDestroy () {
+		SceneManager.sceneLoaded -= SceneManager_sceneLoaded;
+	}
 }

@@ -12,7 +12,11 @@ public class StoryNode : MonoBehaviour {
 
 	public string[] LinkTexts;
 
+	public int Points;
+
 	public int[] NodeLinksIndexes;
+
+	public Params[] AdditionalParams;
 
 	public StoryNode[] NodeLinks;
 }
@@ -21,4 +25,9 @@ public enum Speaker {
 	Plaintiff,
     Witness,
 	Defendant
+}
+
+public enum Params {
+	FinalChoice,
+	Final
 }

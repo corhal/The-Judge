@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 public class NodeDisplayer : MonoBehaviour {
 
+	public Slider DefendantSlider;
+	public Slider PlaintiffSlider;
+
 	public GameObject WitnessObject;
 
 	public ScrollRect scrollRect;
@@ -31,6 +34,8 @@ public class NodeDisplayer : MonoBehaviour {
 
 	void Awake () {
 		Dialogues = new List<GameObject>();
+		DefendantSlider.maxValue = 20.0f; // "Временный" хардкодий
+		PlaintiffSlider.maxValue = 20.0f;
 	}
 
 	public void SetStartingNode (StoryNode startingNode) {
@@ -50,7 +55,51 @@ public class NodeDisplayer : MonoBehaviour {
 		NodeLinks = new Button[node.NodeLinks.Length];
 		LinkTexts = new Text[node.NodeLinks.Length];
 
+		Player.instance.CurrentCase.AddPoints (currentNode.Points);
+		DefendantSlider.value = Player.instance.CurrentCase.DefendantPoints;
+		PlaintiffSlider.value = Player.instance.CurrentCase.PlaintiffPoints;
+
 		DisplayDialogue ();
+	}
+
+	void DisplayDialogue () {
+		if (Dialogues.Count > 0) {
+			Color currentColor = Dialogues [Dialogues.Count - 1].GetComponentInChildren<Image> ().color;
+			Dialogues [Dialogues.Count - 1].GetComponentInChildren<Image> ().color = new Color (currentColor.r, currentColor.g, currentColor.b, 0.5f);
+		}	
+		GameObject newDialogue = Instantiate (DialoguePrefab, DialogueParent.transform) as GameObject;
+		Dialogues.Add (newDialogue);
+
+		if (Utility.ArrayContains (currentNode.AdditionalParams, Params.FinalChoice)) {
+			string[] dialogueTexts = currentNode.Dialogue.Split (';');
+			if (currentNode.DialogueSpeaker == Speaker.Defendant) {
+				if (Player.instance.CurrentCase.PlaintiffPoints > Player.instance.CurrentCase.DefendantPoints) {
+					newDialogue.GetComponentInChildren<Text> ().text = dialogueTexts [0];
+				} else {
+					newDialogue.GetComponentInChildren<Text> ().text = dialogueTexts [1];
+				}
+			} else {
+				if (Player.instance.CurrentCase.PlaintiffPoints < Player.instance.CurrentCase.DefendantPoints) {
+					newDialogue.GetComponentInChildren<Text> ().text = dialogueTexts [0];
+				} else {
+					newDialogue.GetComponentInChildren<Text> ().text = dialogueTexts [1];
+				}
+			}
+		} else {
+			newDialogue.GetComponentInChildren<Text> ().text = currentNode.Dialogue;
+		}
+
+		SetSpeaker (newDialogue, currentNode.DialogueSpeaker);
+
+		if (Dialogues.Count + 1 > currentDialogue) {
+			currentDialogue++;
+		}
+
+		DisplayStoryLinks ();
+
+		Canvas.ForceUpdateCanvases();
+		scrollRect.verticalNormalizedPosition = -0.0f;
+		Canvas.ForceUpdateCanvases();
 	}
 
 	void DisplayStoryLinks () {
@@ -63,7 +112,7 @@ public class NodeDisplayer : MonoBehaviour {
 			NodeLinks [i].onClick.RemoveAllListeners ();
 			StoryNode displayNode = currentNode.NodeLinks [i];
 
-			if (currentNode == Player.instance.CurrentCase.LastNode) {
+			if (Utility.ArrayContains(currentNode.AdditionalParams, Params.Final)) {
 				NodeLinks [i].onClick.AddListener (delegate {				
 					Player.instance.GoToOffice();
 				});
@@ -73,41 +122,6 @@ public class NodeDisplayer : MonoBehaviour {
 				});
 			}
 		}
-	}
-
-	void DisplayDialogue () {
-		if (Dialogues.Count > 0) {
-			Color currentColor = Dialogues [Dialogues.Count - 1].GetComponentInChildren<Image> ().color;
-			Dialogues [Dialogues.Count - 1].GetComponentInChildren<Image> ().color = new Color (currentColor.r, currentColor.g, currentColor.b, 0.5f);
-		}	
-		GameObject newDialogue = Instantiate (DialoguePrefab, DialogueParent.transform) as GameObject;
-		Dialogues.Add (newDialogue);
-		//Dialogues [index] = newDialogue;
-		newDialogue.GetComponentInChildren<Text> ().text = currentNode.Dialogue;
-
-		SetSpeaker (newDialogue, currentNode.DialogueSpeaker);
-
-		if (Dialogues.Count + 1 > currentDialogue) {
-			currentDialogue++;
-		}
-
-		Debug.Log (currentDialogue + " " + (Dialogues.Count - 1));
-
-		DisplayStoryLinks ();
-
-		Canvas.ForceUpdateCanvases();
-		scrollRect.verticalNormalizedPosition = -0.0f;
-		Canvas.ForceUpdateCanvases();
-	}
-
-	IEnumerator ScrollBottom () {		
-		yield return new WaitForSeconds(0.5f);
-		scrollRect.verticalNormalizedPosition = -0.1f;
-	}
-
-	void ClickButton (StoryNode node) {
-		Debug.Log (node);
-		//DisplayNode(node);
 	}
 
 	void SetSpeaker (GameObject dialogue, Speaker speaker) {

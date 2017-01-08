@@ -99,4 +99,13 @@ public static class Utility {
 		}
 		return new Color32(r,g,b,a);
 	}
+
+	public static bool ArrayContains (System.Array array, System.Object obj) {
+		int pos = System.Array.IndexOf(array, obj);
+		if (pos > -1) { // pos contains position of obj
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
